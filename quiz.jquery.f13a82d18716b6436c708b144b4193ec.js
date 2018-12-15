@@ -1,0 +1,4 @@
+(function($){$.fn.quiz=function(action){var that=this;function nextStep(){var quizSteps=that.children("[data-quiz-step]");var index=quizSteps.index(quizSteps.filter(":visible"));if(quizSteps.filter(":visible").length>0){quizSteps.eq(index).trigger("quizExit").fadeOut("fast",function(){quizSteps.eq(index+ 1).fadeIn("fast",function(){$(this).trigger("quizEnter");});});}
+else{quizSteps.eq(index+ 1).fadeIn("fast",function(){$(this).trigger("quizEnter");});};};if(typeof action!=="undefined"&&action=="nextStep"){nextStep();}
+else{var stepCount=1;var steps=that.children("[data-quiz-step]").length;that.on('click','[data-quiz-next]',function(e){e.preventDefault();nextStep();});this.children("[data-quiz-step]").hide();nextStep();}
+return this;};})(jQuery);
